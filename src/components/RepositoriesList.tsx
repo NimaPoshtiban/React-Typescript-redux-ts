@@ -1,14 +1,15 @@
 import { Fragment, useState } from 'react';
-import {useSelector} from 'react-redux'
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
-
 
 const RepositoriesList: React.FC = () => {
   const [term, steTerm] = useState('');
   const { searchRepositories } = useActions();
   // getting the state
-  const {data,error,loading} = useSelector((state:any)=>state.repositories)
-  
+  const { data, error, loading } = useTypedSelector(
+    (state) => state.repositories
+  );
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     searchRepositories(term);
